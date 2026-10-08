@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
-
+from database import insert
 
 # ============================================================
 # 1. CONFIGURATION
@@ -359,8 +359,14 @@ else:
         # ----------------------------------------------------
 
         nom_cluster = prediction
+        data_final = {
+            "Recency": recency,
+            "Frequency": frequency,
+            "Monetary": monetary,
+            "prediction" : prediction
+        }
 
-
+        insert(data_final)
 
         # ----------------------------------------------------
         # Affichage
